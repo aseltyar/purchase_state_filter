@@ -19,7 +19,7 @@ jobs:
           host: "142.93.33.213"
           username: "root"
           key: ${{ secrets.ODOO_SERVER_SSH }}
-          passphrase: OdooServer2024
+          passphrase: ${{ secrets.ODOO_SERVER_PASSPHRASE }}
           script: |
             cd /opt/Odoo17-Docker/custom_modules/purchase_state_filter
             git pull https://github.com/aseltyar/purchase_state_filter.git main
