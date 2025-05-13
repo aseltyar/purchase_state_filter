@@ -1,0 +1,27 @@
+name: Deploy to Odoo Server
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Deploy to Odoo Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: "142.93.33.213"
+          username: "root"
+          key: ${{ secrets.ODOO_SERVER_SSH }}
+          passphrase: OdooServer2024
+          script: |
+            cd /opt/Odoo17-Docker/custom_modules/purchase_state_filter
+            git pull https://github.com/aseltyar/purchase_state_filter.git main
+            # إعادة تشغيل خدمة Odoo لتطبيق التغييرات
+            docker restart odoo
