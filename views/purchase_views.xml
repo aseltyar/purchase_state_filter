@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- توريث عرض البحث وإضافة فلاتر وخيارات تجميع جديدة حسب الحالة -->
     <record id="view_purchase_order_filter_state" model="ir.ui.view">
         <field name="name">purchase.order.filter.state</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
         <field name="arch" type="xml">
+            <!-- إضافة فلاتر للحالة بعد فلتر "Draft RFQs" -->
             <xpath expr="//filter[@name='draft_rfqs']" position="after">
+                <separator/>
                 <filter string="مسودة" name="state_draft" domain="[('state', '=', 'draft')]"/>
                 <filter string="طلب الموافقة" name="state_sent" domain="[('state', '=', 'sent')]"/>
                 <filter string="مؤكد" name="state_purchase" domain="[('state', '=', 'purchase')]"/>
@@ -13,7 +16,8 @@
                 <filter string="مغلق" name="state_done" domain="[('state', '=', 'done')]"/>
             </xpath>
             
-            <xpath expr="//filter[@name='order_date' and @context]" position="after">
+            <!-- إضافة خيار تجميع حسب الحالة في قسم "Group By" -->
+            <xpath expr="//group//filter[@name='vendor']" position="after">
                 <filter string="الحالة" name="groupby_state" context="{'group_by': 'state'}"/>
             </xpath>
         </field>
