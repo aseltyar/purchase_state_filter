@@ -3,7 +3,7 @@
     'version': '17.0.1.0',
     'category': 'Purchase',
     'summary': 'Add filtering and grouping by state in purchase orders',
-    'author': 'Your Name',
+    'author': 'Abdelrahman S. Eltyar',
     'website': 'https://github.com/aseltyar/purchase_state_filter',
     'license': 'AGPL-3',
     'depends': ['purchase'],
