@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="purchase_order_view_search_inherit" model="ir.ui.view">
-        <field name="name">purchase.order.search.inherit</field>
+    <record id="view_purchase_order_filter_state" model="ir.ui.view">
+        <field name="name">purchase.order.filter.state</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
         <field name="arch" type="xml">
-            <!-- إضافة فلاتر للحالة -->
-            <xpath expr="//filter[@name='draft']" position="after">
-                <separator/>
-                <filter string="مسودة" name="state_draft" domain="[('state', '=', 'draft')]"/>
-                <filter string="طلب الموافقة" name="state_sent" domain="[('state', '=', 'sent')]"/>
-                <filter string="مؤكد" name="state_purchase" domain="[('state', '=', 'purchase')]"/>
-                <filter string="ملغي" name="state_cancel" domain="[('state', '=', 'cancel')]"/>
-                <filter string="مغلق" name="state_done" domain="[('state', '=', 'done')]"/>
-            </xpath>
-            
-            <!-- إضافة تجميع حسب الحالة بعد "Vendor" -->
-            <xpath expr="//group/filter[@name='vendor']" position="after">
+            <xpath expr="//group" position="inside">
                 <filter string="الحالة" name="groupby_state" context="{'group_by': 'state'}"/>
             </xpath>
         </field>
