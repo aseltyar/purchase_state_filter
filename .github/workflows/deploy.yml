@@ -24,4 +24,5 @@ jobs:
             cd /opt/Odoo17-Docker/custom_modules/purchase_state_filter
             git pull https://github.com/aseltyar/purchase_state_filter.git main
             # إعادة تشغيل خدمة Odoo لتطبيق التغييرات
-            docker restart odoo
+            cd /opt/Odoo17-Docker/
+            docker-compose restart
