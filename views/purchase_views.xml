@@ -3,10 +3,10 @@
     <record id="purchase_order_view_search_inherit" model="ir.ui.view">
         <field name="name">purchase.order.search.inherit</field>
         <field name="model">purchase.order</field>
-        <field name="inherit_id" ref="purchase.purchase_order_view_search"/>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
         <field name="arch" type="xml">
-            <!-- إضافة فلاتر للحالة -->
-            <filter name="state" position="after">
+            <!-- إضافة فلاتر للحالة بعد فلتر "To Approve" -->
+            <filter name="to_approve" position="after">
                 <filter string="مسودة" name="state_draft" domain="[('state', '=', 'draft')]"/>
                 <filter string="طلب الموافقة" name="state_sent" domain="[('state', '=', 'sent')]"/>
                 <filter string="مؤكد" name="state_purchase" domain="[('state', '=', 'purchase')]"/>
@@ -14,8 +14,8 @@
                 <filter string="مغلق" name="state_done" domain="[('state', '=', 'done')]"/>
             </filter>
             
-            <!-- إضافة تجميع حسب الحالة -->
-            <filter name="groupby_supplier" position="after">
+            <!-- إضافة تجميع حسب الحالة بعد "Vendor" -->
+            <filter name="vendor" position="after">
                 <filter string="الحالة" name="groupby_state" context="{'group_by': 'state'}"/>
             </filter>
         </field>
